@@ -1,5 +1,6 @@
 import 'package:chat/src/controllers/auth/auth_controller.dart';
 import 'package:chat/src/core/constants/app_assets.dart';
+import 'package:chat/src/core/constants/app_constants.dart';
 import 'package:chat/src/core/theme/app_text_styles.dart';
 import 'package:chat/src/core/theme/app_utils.dart';
 import 'package:chat/src/presentation/components/buttons/custom_button.dart';
@@ -18,11 +19,11 @@ class AuthScreen extends GetView<AuthController> {
       builder: (controller) {
         bool isLogin = controller.isLoginForm;
         return Scaffold(
+          resizeToAvoidBottomInset: true,
           body: SafeArea(
-            child: SizedBox(
-              height: Get.height,
-              child: Padding(
-                padding: AppUtils.horizontal20,
+            child: Padding(
+              padding: AppUtils.horizontal20,
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -42,19 +43,44 @@ class AuthScreen extends GetView<AuthController> {
                       ),
                     ),
                     AppUtils.height20,
-                    const InputField(
-                      hintText: 'Логин',
-                    ),
-                    AppUtils.height12,
-                    const PasswordField(
-                      hintText: 'Пароль',
-                    ),
-                    if (!isLogin) ...[
-                      AppUtils.height12,
-                      const PasswordField(
-                        hintText: 'Потвердить пароль',
+                    AnimatedSize(
+                      duration: AppConstants.animationDuration,
+                      child: Column(
+                        children: [
+                          InputField(
+                            hintText: 'Логин',
+                            controller: controller.loginController,
+                            focusNode: controller.loginFocus,
+                            onSubmitted: (v) {
+                              FocusScope.of(context).requestFocus(
+                                controller.passFocus,
+                              );
+                            },
+                          ),
+                          AppUtils.height12,
+                          PasswordField(
+                            hintText: 'Пароль',
+                            controller: controller.passController,
+                            focusNode: controller.passFocus,
+                            onSubmitted: (v) {
+                              if (!isLogin) {
+                                FocusScope.of(context).requestFocus(
+                                  controller.confirmPassFocus,
+                                );
+                              }
+                            },
+                          ),
+                          if (!isLogin) ...[
+                            AppUtils.height12,
+                            PasswordField(
+                              hintText: 'Потвердить пароль',
+                              controller: controller.confirmPassController,
+                              focusNode: controller.confirmPassFocus,
+                            ),
+                          ],
+                        ],
                       ),
-                    ],
+                    ),
                     AppUtils.height6,
                     TextButton(
                       onPressed: controller.changeForm,
@@ -64,7 +90,6 @@ class AuthScreen extends GetView<AuthController> {
                             : "У вас уже есть аккаунт? Войти",
                       ),
                     ),
-                    AppUtils.spacer,
                   ],
                 ),
               ),
@@ -74,7 +99,8 @@ class AuthScreen extends GetView<AuthController> {
             child: Padding(
               padding: AppUtils.horizontal20Vertical16,
               child: CustomButton(
-                onTap: () {},
+                onTap: isLogin ? controller.login : controller.register,
+                isLoading: controller.isLoading,
                 text: isLogin ? 'Войти' : "Регистрировать",
               ),
             ),

@@ -51,8 +51,8 @@ class CustomButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             foregroundColor: foregroundColor ?? AppColors.shadow,
             backgroundColor: color,
-            disabledBackgroundColor: AppColors.primary.withOpacity(0.2),
-            disabledForegroundColor: AppColors.primary.withOpacity(0.2),
+            disabledBackgroundColor: AppColors.primary.withOpacity(0.7),
+            disabledForegroundColor: AppColors.primary.withOpacity(0.7),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 12),
             ),
@@ -78,13 +78,9 @@ class CustomButton extends StatelessWidget {
                       ? Obx(
                           () => Visibility(
                             visible: (isLoading!.value),
-                            child: SizedBox(
-                              height: height ?? 54 / 2,
-                              width: height ?? 54 / 2,
-                              child: const CircularProgressIndicator(
-                                strokeWidth: 3,
-                                color: AppColors.white,
-                              ),
+                            child: const CircularProgressIndicator(
+                              strokeWidth: 3,
+                              color: AppColors.white,
                             ),
                           ),
                         )

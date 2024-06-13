@@ -2,14 +2,21 @@ import 'package:chat/src/core/theme/app_colors.dart';
 import 'package:chat/src/core/theme/app_text_styles.dart';
 import 'package:chat/src/data/local_storage/local_storage.dart';
 import 'package:chat/src/data/models/user/user_model.dart';
+import 'package:chat/src/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseController extends GetxController {
   final LocalStorage localStorage = LocalStorage();
   final UserModel? _user = LocalStorage().getUser();
+  RxBool isLoading = false.obs;
 
   UserModel? get getUser => _user;
+
+  void setLoading(bool value) {
+    isLoading.value = value;
+    update();
+  }
 
   void showError(String message, {String title = 'Ошибка'}) {
     Get.snackbar(
@@ -76,9 +83,8 @@ abstract class BaseController extends GetxController {
     );
   }
 
-  // TODO implement it
-  // void logOut() {
-  //   Get.offAllNamed(AppRoutes.auth);
-  //   LocalStorage.instance.setUser(null);
-  // }
+  void logOut() {
+    Get.offAllNamed(AppRoutes.auth);
+    LocalStorage.instance.setUser(null);
+  }
 }

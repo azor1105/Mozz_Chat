@@ -8,6 +8,7 @@ class InputField extends StatelessWidget {
   final TextEditingController? controller;
   final bool? autoFocus;
   final Function(String value)? onChanged;
+  final Function(String value)? onSubmitted;
   final TextInputType? keyboardType;
   final String? errorText;
   final TextInputAction? inputAction;
@@ -18,6 +19,7 @@ class InputField extends StatelessWidget {
 
   const InputField({
     super.key,
+    this.onSubmitted,
     this.showError = false,
     this.controller,
     this.autoFocus,
@@ -39,7 +41,8 @@ class InputField extends StatelessWidget {
         style: AppTextStyles.titleSmall.copyWith(fontSize: 16),
         focusNode: focusNode,
         autofocus: autoFocus ?? false,
-        textInputAction: inputAction ?? TextInputAction.next,
+        textInputAction: inputAction,
+        onSubmitted: onSubmitted,
         onChanged: onChanged,
         textAlignVertical: TextAlignVertical.center,
         controller: controller,

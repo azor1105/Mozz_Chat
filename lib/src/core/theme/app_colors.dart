@@ -31,4 +31,15 @@ class AppColors {
   static final Color shadow = Colors.grey.shade300;
 
   static const Color lightRed = Color(0xFFe60000);
+
+  static const List<Color> userColors = <Color>[
+    Color(0xFFF3FF90),
+    Color(0xFFFFB1B1),
+    Color(0xFFD8EFD3),
+    Color(0xFFFD9B63),
+    Color(0xFFF075AA),
+    Color(0xFF83B4FF),
+    Color(0xFFFF9EAA),
+    Color(0xFF6DC5D1),
+  ];
 }

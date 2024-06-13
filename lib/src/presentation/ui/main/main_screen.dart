@@ -7,6 +7,13 @@ class MainScreen extends GetView<MainController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: SafeArea(
+        child: TextButton(
+          onPressed: controller.logOut,
+          child: Text("LogOut"),
+        ),
+      ),
+    );
   }
 }
