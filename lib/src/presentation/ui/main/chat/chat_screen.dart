@@ -17,45 +17,47 @@ class ChatScreen extends GetView<ChatController> {
       appBar: UserAppBar(user: controller.receiver),
       body: GetBuilder<ChatController>(
         builder: (controller) {
-          return Column(
-            children: [
-              AppUtils.secondaryDivider,
-              Expanded(
-                child: controller.messages.isEmpty
-                    ? const NoMessagesItem()
-                    : ListView.builder(
-                        padding: AppUtils.horizontal10,
-                        controller: controller.scrollController,
-                        itemBuilder: (context, index) {
-                          var message = controller.messages[index];
-                          return MessageItem(
-                            isUser: message.from == controller.getUser!.id,
-                            showDate: index == 0 ||
-                                message.dateTime.toDateTime
-                                        .difference(controller
-                                            .messages[index - 1]
-                                            .dateTime
-                                            .toDateTime)
-                                        .inDays >
-                                    0,
-                            message: message,
-                          );
-                        },
-                        itemCount: controller.messages.length,
-                      ),
-              ),
-              AppUtils.secondaryDivider,
-              InputField(
-                controller: controller.messageController,
-                focusNode: controller.messageFocus,
-                hintText: 'Сообщение',
-                margin: AppUtils.horizontal20Vertical10,
-                suffixIcon:
-                    controller.getMessageText.isNotEmpty ? Icons.send : null,
-                onSuffixTap: controller.send,
-                maxLines: null,
-              ),
-            ],
+          return SafeArea(
+            child: Column(
+              children: [
+                AppUtils.secondaryDivider,
+                Expanded(
+                  child: controller.messages.isEmpty
+                      ? const NoMessagesItem()
+                      : ListView.builder(
+                          padding: AppUtils.horizontal10,
+                          controller: controller.scrollController,
+                          itemBuilder: (context, index) {
+                            var message = controller.messages[index];
+                            return MessageItem(
+                              isUser: message.from == controller.getUser!.id,
+                              showDate: index == 0 ||
+                                  message.dateTime.toDateTime
+                                          .difference(controller
+                                              .messages[index - 1]
+                                              .dateTime
+                                              .toDateTime)
+                                          .inDays >
+                                      0,
+                              message: message,
+                            );
+                          },
+                          itemCount: controller.messages.length,
+                        ),
+                ),
+                AppUtils.secondaryDivider,
+                InputField(
+                  controller: controller.messageController,
+                  focusNode: controller.messageFocus,
+                  hintText: 'Сообщение',
+                  margin: AppUtils.horizontal20Vertical10,
+                  suffixIcon:
+                      controller.getMessageText.isNotEmpty ? Icons.send : null,
+                  onSuffixTap: controller.send,
+                  maxLines: null,
+                ),
+              ],
+            ),
           );
         },
       ),
