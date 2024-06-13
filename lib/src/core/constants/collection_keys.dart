@@ -4,4 +4,5 @@ class CollectionKeys {
   CollectionKeys._();
 
   static const String USERS = 'users';
+  static const String MESSAGES = 'messages';
 }

@@ -12,6 +12,7 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
       to: json['to'] as String,
       dateTime: (json['date_time'] as num).toInt(),
       text: json['text'] as String,
+      address: json['address'] as String,
     );
 
 Map<String, dynamic> _$MessageModelToJson(MessageModel instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$MessageModelToJson(MessageModel instance) =>
       'to': instance.to,
       'date_time': instance.dateTime,
       'text': instance.text,
+      'address': instance.address,
     };

@@ -1,4 +1,6 @@
 import 'package:chat/src/controllers/main/chat/chat_controller.dart';
+import 'package:chat/src/core/theme/app_colors.dart';
+import 'package:chat/src/core/theme/app_text_styles.dart';
 import 'package:chat/src/core/theme/app_utils.dart';
 import 'package:chat/src/presentation/components/appbars/user_appbar.dart';
 import 'package:chat/src/presentation/components/fields/input_field.dart';
@@ -18,15 +20,31 @@ class ChatScreen extends GetView<ChatController> {
           return Column(
             children: [
               AppUtils.secondaryDivider,
-              const Expanded(child: NoMessagesItem()),
+              Expanded(
+                child: controller.messages.isEmpty
+                    ? const NoMessagesItem()
+                    : ListView.builder(
+                        controller: controller.scrollController,
+                        itemBuilder: (context, index) {
+                          var message = controller.messages[index];
+                          return Text(
+                            message.text,
+                            style: AppTextStyles.titleLarge.copyWith(
+                              color: AppColors.black,
+                            ),
+                          );
+                        },
+                        itemCount: controller.messages.length,
+                      ),
+              ),
               AppUtils.secondaryDivider,
               InputField(
                 controller: controller.messageController,
+                focusNode: controller.messageFocus,
                 hintText: 'Сообщение',
                 margin: AppUtils.horizontal20Vertical10,
-                suffixIcon: controller.messageController.text.isNotEmpty
-                    ? Icons.send
-                    : null,
+                suffixIcon:
+                    controller.getMessageText.isNotEmpty ? Icons.send : null,
                 onSuffixTap: controller.send,
               ),
             ],

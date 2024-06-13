@@ -10,6 +10,7 @@ class MessageModel {
   @JsonKey(name: 'date_time')
   final int dateTime;
   final String text;
+  final String address;
 
   MessageModel({
     required this.id,
@@ -17,9 +18,11 @@ class MessageModel {
     required this.to,
     required this.dateTime,
     required this.text,
+    required this.address,
   });
 
-  factory MessageModel.fromJson(Map<String, dynamic> json) => _$MessageModelFromJson(json);
+  factory MessageModel.fromJson(Map<String, dynamic> json) =>
+      _$MessageModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MessageModelToJson(this);
 }
