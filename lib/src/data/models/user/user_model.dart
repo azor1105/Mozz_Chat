@@ -8,14 +8,11 @@ class UserModel {
   final String login;
   final int color;
   final String password;
-  @JsonKey(name: 'is_online')
-  final bool isOnline;
 
   UserModel({
     required this.id,
     required this.login,
     required this.color,
-    required this.isOnline,
     required this.password,
   });
 
@@ -30,7 +27,6 @@ class UserModel {
         id: id ?? this.id,
         login: login ?? this.login,
         color: color ?? this.color,
-        isOnline: isOnline ?? this.isOnline,
         password: password ?? this.password,
       );
 

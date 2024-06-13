@@ -13,14 +13,6 @@ class AuthRepository {
   final FirebaseFirestore _fireStore;
   final Random _random = Random();
 
-  // Stream<List<SchoolSubjectModel>> getSchoolSubjects() {
-  //   return _fireStore.collection('school_subjects').snapshots().map(
-  //         (event) => event.docs
-  //             .map((doc) => SchoolSubjectModel.fromJson(doc.data()))
-  //             .toList(),
-  //       );
-  // }
-
   Future<UserModel?> getUserByLogin(String login) async {
     var data = await _fireStore
         .collection(CollectionKeys.USERS)
@@ -44,7 +36,6 @@ class AuthRepository {
       id: 'LATER',
       login: login,
       color: colors[_random.intInRange(0, colors.length)].value,
-      isOnline: true,
       password: password,
     );
     var newUser = await _fireStore.collection(CollectionKeys.USERS).add(
