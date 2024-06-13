@@ -10,7 +10,8 @@ class AppAssets {
   // IMAGES
 
   // ICONS
-  // static const String showIcon = "$_ICON_PATH/show.svg";
+  static const String showIcon = "$_ICON_PATH/show.svg";
+  static const String hideIcon = "$_ICON_PATH/hide.svg";
 
   // LOTTIE_ANIMATIONS
   static const String splashLottie = "$_LOTTIE_ANIMATION_PATH/splash.json";
