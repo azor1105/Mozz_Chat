@@ -4,7 +4,6 @@ class AppAssets {
   AppAssets._();
 
   static const String _ICON_PATH = "assets/icons";
-  static const String _IMAGE_PATH = "assets/images";
   static const String _LOTTIE_ANIMATION_PATH = "assets/lottie_animations";
 
   // IMAGES

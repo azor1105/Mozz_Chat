@@ -28,10 +28,11 @@ class UserRepository {
             .toList());
   }
 
-  Stream<List<UserModel>> getUsersBySearch({required String enteredLogin}) {
+  Stream<List<UserModel>> getUsersBySearch({required String query}) {
     return _firestore
         .collection(CollectionKeys.USERS)
-        .where('login', isEqualTo: enteredLogin)
+        .where('login', isGreaterThanOrEqualTo: query)
+        .where('login', isLessThanOrEqualTo: '$query\uf8ff')
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map(

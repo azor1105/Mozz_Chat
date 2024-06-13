@@ -97,7 +97,7 @@ class AuthScreen extends GetView<AuthController> {
           ),
           bottomNavigationBar: SafeArea(
             child: Padding(
-              padding: AppUtils.horizontal20Vertical16,
+              padding: AppUtils.horizontal20Vertical10,
               child: CustomButton(
                 onTap: isLogin ? controller.login : controller.register,
                 isLoading: controller.isLoading,

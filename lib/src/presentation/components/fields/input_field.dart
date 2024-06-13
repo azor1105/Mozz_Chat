@@ -16,6 +16,9 @@ class InputField extends StatelessWidget {
   final Color? fillColor;
   final EdgeInsets? margin;
   final String hintText;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+  final VoidCallback? onSuffixTap;
 
   const InputField({
     super.key,
@@ -31,6 +34,9 @@ class InputField extends StatelessWidget {
     this.fillColor,
     this.margin,
     required this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.onSuffixTap,
   });
 
   @override
@@ -53,6 +59,21 @@ class InputField extends StatelessWidget {
           hintText: hintText,
           fillColor: fillColor ?? AppColors.secondary,
           filled: true,
+          prefixIcon: prefixIcon != null
+              ? Icon(
+                  prefixIcon,
+                  color: AppColors.tertiaryText,
+                )
+              : null,
+          suffixIcon: suffixIcon != null
+              ? IconButton(
+                  onPressed: onSuffixTap,
+                  icon: Icon(
+                    suffixIcon,
+                    color: AppColors.tertiaryText,
+                  ),
+                )
+              : null,
           focusedBorder: const OutlineInputBorder(
             borderRadius: AppUtils.allRadius12,
             borderSide: BorderSide(

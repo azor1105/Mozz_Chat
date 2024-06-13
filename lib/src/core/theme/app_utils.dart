@@ -13,8 +13,8 @@ class AppUtils {
 
   // EDGE INSETS
   static const horizontal20 = EdgeInsets.symmetric(horizontal: 20);
-  static const horizontal20Vertical16 =
-      EdgeInsets.symmetric(horizontal: 20, vertical: 16);
+  static const horizontal20Vertical10 =
+      EdgeInsets.symmetric(horizontal: 20, vertical: 10);
   static const top16All24 =
       EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 16);
 
