@@ -43,8 +43,7 @@ class MozzChatApp extends StatelessWidget {
     return KeyboardDismisser(
       gestures: const [GestureType.onTap],
       child: GetMaterialApp(
-        // TODO uncomment it in release
-        // debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.light,

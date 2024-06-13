@@ -4,9 +4,7 @@ import 'package:chat/src/core/theme/app_text_styles.dart';
 import 'package:chat/src/core/theme/app_utils.dart';
 import 'package:chat/src/data/models/message/message_model.dart';
 import 'package:chat/src/presentation/ui/main/chat/widgets/date_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class MessageItem extends StatelessWidget {
