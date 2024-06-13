@@ -17,6 +17,9 @@ class ChatScreen extends GetView<ChatController> {
       appBar: UserAppBar(user: controller.receiver),
       body: GetBuilder<ChatController>(
         builder: (controller) {
+          if (controller.isLoading.value) {
+            return const SizedBox();
+          }
           return SafeArea(
             child: Column(
               children: [
@@ -54,7 +57,7 @@ class ChatScreen extends GetView<ChatController> {
                   suffixIcon:
                       controller.getMessageText.isNotEmpty ? Icons.send : null,
                   onSuffixTap: controller.send,
-                  maxLines: null,
+                  maxLines: 3,
                 ),
               ],
             ),

@@ -19,6 +19,9 @@ class MainScreen extends GetView<MainController> {
       body: SafeArea(
         child: GetBuilder<MainController>(
           builder: (controller) {
+            if (controller.isLoading.value) {
+              return const SizedBox();
+            }
             return Column(
               children: [
                 // Header

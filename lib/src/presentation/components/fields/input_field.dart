@@ -19,7 +19,7 @@ class InputField extends StatelessWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final VoidCallback? onSuffixTap;
-  final int? maxLines;
+  final int maxLines;
 
   const InputField({
     super.key,
@@ -53,6 +53,7 @@ class InputField extends StatelessWidget {
         onSubmitted: onSubmitted,
         onChanged: onChanged,
         maxLines: maxLines,
+        minLines: 1,
         textAlignVertical: TextAlignVertical.center,
         controller: controller,
         keyboardType: keyboardType,

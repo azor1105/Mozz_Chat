@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:chat/src/base/base_controller.dart';
+import 'package:chat/src/core/constants/app_constants.dart';
 import 'package:chat/src/data/models/message/message_model.dart';
 import 'package:chat/src/data/models/user/user_model.dart';
 import 'package:chat/src/data/repositories/main/chat/chat_repository.dart';
@@ -35,9 +36,11 @@ class ChatController extends BaseController {
   }
 
   void getMessages() {
+    setLoading(true);
     _streamSubscription =
         _chatRepository.getMessages(from: getUser!.id, to: receiver.id).listen(
       (event) {
+        setLoading(false);
         messages = event;
         update();
         scroll();
@@ -49,7 +52,7 @@ class ChatController extends BaseController {
     await Future.delayed(const Duration(milliseconds: 10));
     scrollController.animateTo(
       scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 300),
+      duration: AppConstants.animationDuration,
       curve: Curves.linear,
     );
   }
