@@ -5,6 +5,7 @@ import 'package:chat/src/core/theme/app_utils.dart';
 import 'package:chat/src/presentation/components/dialogs/ask_dialog.dart';
 import 'package:chat/src/presentation/components/fields/input_field.dart';
 import 'package:chat/src/presentation/ui/main/widgets/user_item.dart';
+import 'package:chat/src/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,10 +59,10 @@ class MainScreen extends GetView<MainController> {
                         hintText: 'Поиск',
                         prefixIcon: CupertinoIcons.search,
                         onChanged: controller.onSearch,
+                        onSuffixTap: controller.clearSearch,
                         suffixIcon: controller.searchController.text.isNotEmpty
                             ? CupertinoIcons.xmark
                             : null,
-                        onSuffixTap: controller.clearSearch,
                       ),
                       AppUtils.height20,
                     ],
@@ -74,7 +75,10 @@ class MainScreen extends GetView<MainController> {
                       var user = controller.users[index];
                       return UserItem(
                         user: user,
-                        onTap: () {},
+                        onTap: () => Get.toNamed(
+                          AppRoutes.chat,
+                          arguments: user,
+                        ),
                       );
                     },
                     itemCount: controller.users.length,

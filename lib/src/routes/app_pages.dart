@@ -1,7 +1,9 @@
 import 'package:chat/src/bindings/auth/auth_binding.dart';
+import 'package:chat/src/bindings/main/chat/chat_binding.dart';
 import 'package:chat/src/bindings/main/main_binding.dart';
 import 'package:chat/src/bindings/splash/splash_binding.dart';
 import 'package:chat/src/presentation/ui/auth/auth_screen.dart';
+import 'package:chat/src/presentation/ui/main/chat/chat_screen.dart';
 import 'package:chat/src/presentation/ui/main/main_screen.dart';
 import 'package:chat/src/presentation/ui/splash/splash_screen.dart';
 import 'package:chat/src/routes/app_routes.dart';
@@ -25,6 +27,11 @@ class AppPages {
       name: AppRoutes.main,
       page: () => const MainScreen(),
       binding: MainBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.chat,
+      page: () => const ChatScreen(),
+      binding: ChatBinding(),
     ),
   ];
 }

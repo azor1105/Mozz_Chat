@@ -15,4 +15,5 @@ class AppAssets {
   // LOTTIE_ANIMATIONS
   static const String splashLottie = "$_LOTTIE_ANIMATION_PATH/splash.json";
   static const String authLottie = "$_LOTTIE_ANIMATION_PATH/auth.json";
+  static const String noMessagesLottie = "$_LOTTIE_ANIMATION_PATH/no_messages.json";
 }

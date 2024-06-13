@@ -18,8 +18,6 @@ class AuthRepository {
         .collection(CollectionKeys.USERS)
         .where('login', isEqualTo: login)
         .get();
-
-    print("IS EMPTY: ${data.docs.isEmpty}");
     return data.docs.isEmpty
         ? null
         : UserModel.fromJson(
