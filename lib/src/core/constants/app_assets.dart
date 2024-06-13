@@ -13,5 +13,6 @@ class AppAssets {
   // static const String showIcon = "$_ICON_PATH/show.svg";
 
   // LOTTIE_ANIMATIONS
-  // static const String authLottie = "$_LOTTIE_ANIMATION_PATH/auth.json";
+  static const String splashLottie = "$_LOTTIE_ANIMATION_PATH/splash.json";
+  static const String authLottie = "$_LOTTIE_ANIMATION_PATH/auth.json";
 }

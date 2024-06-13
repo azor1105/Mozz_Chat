@@ -1,15 +1,15 @@
 import 'package:chat/src/core/theme/app_colors.dart';
 import 'package:chat/src/core/theme/app_text_styles.dart';
 import 'package:chat/src/data/local_storage/local_storage.dart';
+import 'package:chat/src/data/models/user/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 abstract class BaseController extends GetxController {
   final LocalStorage localStorage = LocalStorage();
-  // TODO Later implement user
-  // final UserModel? _user = LocalStorage().getUser();
+  final UserModel? _user = LocalStorage().getUser();
 
-  // UserModel? get getUser => _user;
+  UserModel? get getUser => _user;
 
   void showError(String message, {String title = 'Ошибка'}) {
     Get.snackbar(
