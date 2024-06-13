@@ -12,6 +12,7 @@ class AppUtils {
   static const allRadius24 = BorderRadius.all(Radius.circular(24));
 
   // EDGE INSETS
+  static const horizontal10 = EdgeInsets.symmetric(horizontal: 10);
   static const horizontal20 = EdgeInsets.symmetric(horizontal: 20);
   static const horizontal20Vertical10 =
       EdgeInsets.symmetric(horizontal: 20, vertical: 10);

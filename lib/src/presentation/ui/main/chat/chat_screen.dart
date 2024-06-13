@@ -1,9 +1,9 @@
 import 'package:chat/src/controllers/main/chat/chat_controller.dart';
-import 'package:chat/src/core/theme/app_colors.dart';
-import 'package:chat/src/core/theme/app_text_styles.dart';
+import 'package:chat/src/core/extensions/date_extensions.dart';
 import 'package:chat/src/core/theme/app_utils.dart';
 import 'package:chat/src/presentation/components/appbars/user_appbar.dart';
 import 'package:chat/src/presentation/components/fields/input_field.dart';
+import 'package:chat/src/presentation/ui/main/chat/widgets/message_item.dart';
 import 'package:chat/src/presentation/ui/main/chat/widgets/no_messages_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,14 +24,21 @@ class ChatScreen extends GetView<ChatController> {
                 child: controller.messages.isEmpty
                     ? const NoMessagesItem()
                     : ListView.builder(
+                        padding: AppUtils.horizontal10,
                         controller: controller.scrollController,
                         itemBuilder: (context, index) {
                           var message = controller.messages[index];
-                          return Text(
-                            message.text,
-                            style: AppTextStyles.titleLarge.copyWith(
-                              color: AppColors.black,
-                            ),
+                          return MessageItem(
+                            isUser: message.from == controller.getUser!.id,
+                            showDate: index == 0 ||
+                                message.dateTime.toDateTime
+                                        .difference(controller
+                                            .messages[index - 1]
+                                            .dateTime
+                                            .toDateTime)
+                                        .inDays >
+                                    0,
+                            message: message,
                           );
                         },
                         itemCount: controller.messages.length,
@@ -46,6 +53,7 @@ class ChatScreen extends GetView<ChatController> {
                 suffixIcon:
                     controller.getMessageText.isNotEmpty ? Icons.send : null,
                 onSuffixTap: controller.send,
+                maxLines: null,
               ),
             ],
           );

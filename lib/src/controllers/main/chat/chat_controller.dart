@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:chat/src/base/base_controller.dart';
 import 'package:chat/src/data/models/message/message_model.dart';
 import 'package:chat/src/data/models/user/user_model.dart';
@@ -41,7 +40,17 @@ class ChatController extends BaseController {
       (event) {
         messages = event;
         update();
+        scroll();
       },
+    );
+  }
+
+  void scroll() async {
+    await Future.delayed(const Duration(milliseconds: 10));
+    scrollController.animateTo(
+      scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.linear,
     );
   }
 
@@ -58,6 +67,7 @@ class ChatController extends BaseController {
     );
     messageController.clear();
     messageFocus.unfocus();
+    scroll();
   }
 
   String get getMessageText => messageController.text.trim();
